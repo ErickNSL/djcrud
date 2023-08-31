@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%} {%endblock%}fapp</title>
+</head>
+<body>
+
+
+
+<div>
+
+    <header>
+    </header>
+
+
+    <section>
+        {% block content %}
+
+        {% endblock %}
+
+        <table>
+            <tr>
+                <td>Item</td>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{task.title}}</td>
+            </tr>
+            {% empty %}
+                <h3>No items on list</h3>
+            {% endfor %}
+        </table>
+    </section>
+
+</div>
+
+    
+
+
+</body>
+</html>
