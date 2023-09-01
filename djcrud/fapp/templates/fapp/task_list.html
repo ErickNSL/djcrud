@@ -16,22 +16,33 @@
 
 
     <section>
-        {% block content %}
+        {% if request.user.is_authenticated %}
+        <p>{{request.user}}</p>
+        <a href="{% url 'login' %}">Logout</a>
+        {% else %}
+        <a href="">Login</a>
+        {% endif %}
 
-        {% endblock %}
+
+        <h1>To Do In by the time</h1>
+        <a href="{% url 'task-create' %}">Add New task</a>
 
         <table>
             <tr>
-                <td>Item</td>
+                <th>Item</th>
             </tr>
             {% for task in tasks %}
             <tr>
                 <td>{{task.title}}</td>
+                <td><a href="{% url 'task' task.id %}">Show</a></td>
+                <td><a href="{% url 'task-update' task.id %}">Edit</a></td>
+                <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
             </tr>
             {% empty %}
                 <h3>No items on list</h3>
             {% endfor %}
         </table>
+
     </section>
 
 </div>
