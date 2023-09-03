@@ -30,6 +30,13 @@ class TaskList(LoginRequiredMixin, ListView):
         contex = super().get_context_data(**kwargs)
         contex['tasks'] = contex['tasks'].filter(user=self.request.user)
         contex['count'] = contex['tasks'].filter(complete=False).count()
+
+        search_input = self.request.GET.get('search-area') or ''
+
+
+        if search_input:
+            contex['tasks'] = contex['tasks'].filter(title__icontains=search_input)
+
         return contex
 
 
