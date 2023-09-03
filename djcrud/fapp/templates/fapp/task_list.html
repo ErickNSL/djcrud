@@ -25,6 +25,13 @@
         {% endif %}
 
         <h1>To Do In by the time</h1>
+
+        <form method="GET">
+            <input type="text" value="{{search_input}}" name="search-area" >
+            <input type="submit" value="Search">
+            <input type="submit" value="{{show_all}}" name="s_all">
+        </form>
+
         <a href="{% url 'task-create' %}">Add New task</a>
 
         <table>
